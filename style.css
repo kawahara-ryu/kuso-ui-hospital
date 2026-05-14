@@ -1,0 +1,408 @@
+/* ベーススタイル */
+:root {
+    --bg-color: #f0f4f8;
+    --text-color: #333;
+    --primary: #007bff;
+    --danger: #dc3545;
+    --success: #28a745;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* スマホでスクロールさせない */
+}
+
+#app {
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    max-height: 800px;
+    background-color: #fff;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+/* 画面切り替え */
+.screen {
+    display: none;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* タイトル画面 */
+.glitch-container {
+    margin-bottom: 20px;
+}
+
+h1.glitch {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+    position: relative;
+}
+
+.subtitle {
+    margin-bottom: 40px;
+    color: #666;
+}
+
+/* クソUI用ボタン (タイトル用: わざと押しにくそうに) */
+.kuso-btn {
+    padding: 15px 30px;
+    background-color: #ccc;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.1s;
+}
+.kuso-btn:hover {
+    background-color: #bbb;
+    transform: translate(2px, 2px);
+}
+
+/* ゲーム画面ヘッダー */
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #e0f7fa;
+    border-bottom: 2px solid #b2ebf2;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.patient-info {
+    font-weight: bold;
+    color: #00838f;
+}
+
+/* ハンバーガーメニュー */
+#hamburger-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #00838f;
+}
+#hamburger-btn.hidden {
+    visibility: hidden;
+}
+
+/* メインコンテンツ */
+.main-content {
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#stage-title {
+    margin-bottom: 15px;
+    color: #00838f;
+}
+
+#instruction-box {
+    background-color: #fffde7;
+    border: 1px solid #fff59d;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+/* UIコンテナ (罠を展開するエリア) */
+.ui-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    position: relative;
+    height: 300px; /* 固定高で要素を配置しやすくする */
+}
+
+/* ---- クソUIのスタイリング ---- */
+
+/* 1. 視線誘導 */
+.kuso-tiny_grey_button {
+    background-color: #f8f9fa;
+    color: #ced4da;
+    border: 1px solid #e9ecef;
+    padding: 5px 10px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.kuso-huge_red_button {
+    background-color: var(--danger);
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 4px 0 #a71d2a;
+    width: 100%;
+    cursor: pointer;
+    animation: pulse 1.5s infinite;
+}
+.kuso-huge_green_button {
+    background-color: var(--success);
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 4px 0 #1e7e34;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* 2. ダークパターン */
+.kuso-primary_button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.kuso-secondary_button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.kuso-hidden_text_link {
+    color: #e0e0e0; /* ほぼ見えない */
+    text-decoration: none;
+    font-size: 0.6rem;
+    margin-top: 40px;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+/* 3. メンタルモデル */
+.kuso-normal_text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    padding: 10px;
+    border: 2px solid #ccc;
+    background: white;
+    cursor: pointer;
+}
+.kuso-progress_bar {
+    font-size: 1.5rem;
+    background: #e9ecef;
+    border: 2px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+}
+.kuso-color_code {
+    font-family: monospace;
+    font-size: 2rem;
+    background: #FF4500;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+}
+
+/* 4. ハンバーガーメニュー */
+.kuso-fake_button {
+    background-color: #ffc107;
+    color: #333;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* 5. CAPTCHA */
+.captcha-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 4px;
+}
+.captcha-header {
+    background-color: #1a73e8;
+    color: white;
+    width: 100%;
+    padding: 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+}
+.captcha-box {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    margin-bottom: 10px;
+}
+.captcha-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.captcha-grid {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 2px;
+}
+.captcha-cell {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.1s;
+    background: rgba(255, 255, 255, 0.1);
+}
+.captcha-cell.selected {
+    border: 4px solid #1a73e8;
+    background: rgba(255, 255, 255, 0.4);
+}
+.captcha-cell.selected::after {
+    content: "✔";
+    position: absolute;
+    color: #1a73e8;
+    background: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 4px;
+}
+.captcha-verify-btn {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: flex-end;
+    font-weight: bold;
+}
+
+/* アニメーション */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* モーダル */
+.modal {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+.modal.hidden {
+    display: none;
+}
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    text-align: center;
+}
+#exp-title {
+    color: var(--danger);
+    margin-bottom: 15px;
+}
+#exp-text {
+    margin-bottom: 20px;
+    line-height: 1.5;
+    text-align: left;
+}
+.normal-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* クリア画面 */
+#clear-screen {
+    text-align: center;
+    padding: 30px;
+}
+.clear-img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.password-box {
+    background-color: #e8f5e9;
+    border: 2px dashed #4caf50;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+.password-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2e7d32;
+    margin-top: 10px;
+}

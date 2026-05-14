@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>クソUI病棟からの脱出</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Inter & Noto Sans JP -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- タイトル画面 -->
+        <section id="title-screen" class="screen active">
+            <div class="glitch-container">
+                <h1 class="glitch" data-text="クソUI病棟">クソUI病棟</h1>
+            </div>
+            <p class="subtitle">〜 退院できない患者たち 〜</p>
+            <button id="start-btn" class="kuso-btn">入院手続きをする</button>
+        </section>
+
+        <!-- ゲーム画面 -->
+        <section id="game-screen" class="screen">
+            <header>
+                <div class="patient-info">患者：液体化進行中のトラ猫</div>
+                <div class="hamburger-container">
+                    <button id="hamburger-btn" class="hidden">☰</button>
+                </div>
+            </header>
+            
+            <div class="main-content">
+                <h2 id="stage-title">第1の罠</h2>
+                <div id="instruction-box">
+                    <p id="instruction-text">指示テキスト</p>
+                </div>
+                
+                <div id="ui-container" class="ui-area">
+                    <!-- data.js から動的にUIが生成される -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 解説モーダル -->
+        <div id="explanation-modal" class="modal hidden">
+            <div class="modal-content">
+                <h3 id="exp-title">解説タイトル</h3>
+                <p id="exp-text">解説テキスト</p>
+                <button id="next-btn" class="normal-btn">次へ</button>
+            </div>
+        </div>
+
+        <!-- クリア画面 -->
+        <section id="clear-screen" class="screen">
+            <h2>無事？退院！</h2>
+            <img src="./clear_image.png" alt="ハンバーガーメニューに隠された集中治療室" class="clear-img">
+            <div class="password-box">
+                <p>Google Classroomの解答に以下の「あいことば」を入力してください。</p>
+                <div class="password-text">ハンバーガーメニューに隠された集中治療室</div>
+            </div>
+            <p class="message">おめでとうございます！クソUIに騙されず、無事に集中治療室（？）にたどり着けました。</p>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
