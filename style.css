@@ -406,3 +406,5 @@ header {
     color: #2e7d32;
     margin-top: 10px;
 }
+
+.keyword-text, .password-text { user-select: text !important; -webkit-user-select: text !important; }
